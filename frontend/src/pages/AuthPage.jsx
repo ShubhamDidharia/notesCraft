@@ -39,25 +39,27 @@ const AuthPage = () => {
   };
 
   return (
-    <section className="auth page-fade">
-      <form className="auth-card glass" onSubmit={submit}>
-        <h2>{mode === 'signin' ? 'Welcome back' : 'Create account'}</h2>
-        <p>Continue to your intelligent notes workspace.</p>
+    <section className="page-fade" style={{ display: 'grid', placeItems: 'center', minHeight: '100vh' }}>
+      <form className="glass" style={{ width: '100%', maxWidth: '28rem', padding: '2rem', borderRadius: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }} onSubmit={submit}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <h2 style={{ fontSize: '1.875rem', fontWeight: 'bold' }}>{mode === 'signin' ? 'Welcome back' : 'Create account'}</h2>
+          <p style={{ color: '#5a584f' }}>Continue to your intelligent notes workspace.</p>
+        </div>
 
         {mode === 'signup' && (
-          <label>
-            Name
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <label style={{ fontSize: '0.875rem', fontWeight: '600', color: '#1f1f1b', display: 'block' }}>Name</label>
             <input
               required
               value={form.name}
               onChange={(event) => setForm((prev) => ({ ...prev, name: event.target.value }))}
               placeholder="Ada Lovelace"
             />
-          </label>
+          </div>
         )}
 
-        <label>
-          Email
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <label style={{ fontSize: '0.875rem', fontWeight: '600', color: '#1f1f1b', display: 'block' }}>Email</label>
           <input
             type="email"
             required
@@ -65,10 +67,10 @@ const AuthPage = () => {
             onChange={(event) => setForm((prev) => ({ ...prev, email: event.target.value }))}
             placeholder="you@domain.com"
           />
-        </label>
+        </div>
 
-        <label>
-          Password
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <label style={{ fontSize: '0.875rem', fontWeight: '600', color: '#1f1f1b', display: 'block' }}>Password</label>
           <input
             type="password"
             required
@@ -77,17 +79,22 @@ const AuthPage = () => {
             onChange={(event) => setForm((prev) => ({ ...prev, password: event.target.value }))}
             placeholder="At least 6 characters"
           />
-        </label>
+        </div>
 
-        {error && <div className="error-box">{error}</div>}
+        {error && (
+          <div className="error-box" style={{ padding: '0.75rem 1rem' }}>
+            {error}
+          </div>
+        )}
 
-        <button type="submit" className="btn solid full" disabled={loading}>
+        <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '0.75rem', fontWeight: '600' }} disabled={loading}>
           {loading ? 'Please wait...' : mode === 'signin' ? 'Sign In' : 'Sign Up'}
         </button>
 
         <button
           type="button"
-          className="btn ghost full"
+          className="btn btn-ghost"
+          style={{ width: '100%', padding: '0.75rem', fontWeight: '600' }}
           onClick={() => {
             setError('');
             setMode((prev) => (prev === 'signin' ? 'signup' : 'signin'));
