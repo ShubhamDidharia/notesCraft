@@ -13,28 +13,46 @@ const Navbar = () => {
 
   return (
     <header className="top-nav glass">
-      <Link to="/" className="brand">
-        NoteCraft
+      <Link to="/" className="brand" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem' }}>
+        <span>📝</span> NoteCraft
       </Link>
       <nav className="nav-links">
         {!isAuthenticated ? (
           <>
-            <NavLink to="/" className="nav-link">
+            <NavLink 
+              to="/" 
+              className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+            >
               Home
             </NavLink>
-            <NavLink to="/auth" className="nav-link nav-cta">
+            <NavLink 
+              to="/auth" 
+              className={({ isActive }) => `nav-link btn-primary ${isActive ? 'active' : ''}`}
+              style={{ backgroundColor: '#d14d36', color: '#ffffff' }}
+            >
               Sign In
             </NavLink>
           </>
         ) : (
           <>
-            <NavLink to="/notes" className="nav-link">
+            <NavLink 
+              to="/notes" 
+              className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+            >
               Notes
             </NavLink>
-            <NavLink to="/profile" className="nav-link">
+            <NavLink 
+              to="/profile" 
+              className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+            >
               Profile
             </NavLink>
-            <button type="button" onClick={handleLogout} className="nav-link nav-button">
+            <button 
+              type="button" 
+              onClick={handleLogout} 
+              className="nav-link"
+              style={{ color: '#1f1f1b' }}
+            >
               Logout ({user?.name?.split(' ')[0] || 'User'})
             </button>
           </>
