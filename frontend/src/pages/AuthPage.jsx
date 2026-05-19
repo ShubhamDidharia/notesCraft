@@ -39,36 +39,40 @@ const AuthPage = () => {
   };
 
   return (
-    <section className="auth page-fade">
-      <form className="auth-card glass" onSubmit={submit}>
-        <h2>{mode === 'signin' ? 'Welcome back' : 'Create account'}</h2>
-        <p>Continue to your intelligent notes workspace.</p>
+    <section className="page-fade grid place-items-center min-h-screen">
+      <form className="glass w-full max-w-lg p-8 rounded-3xl space-y-6" onSubmit={submit}>
+        <div className="space-y-2">
+          <h2 className="text-3xl font-bold">{mode === 'signin' ? 'Welcome back' : 'Create account'}</h2>
+          <p className="text-muted-foreground">Continue to your intelligent notes workspace.</p>
+        </div>
 
         {mode === 'signup' && (
-          <label>
-            Name
+          <div className="space-y-2">
+            <label className="block text-sm font-semibold text-foreground">Name</label>
             <input
               required
               value={form.name}
               onChange={(event) => setForm((prev) => ({ ...prev, name: event.target.value }))}
               placeholder="Ada Lovelace"
+              className="w-full border border-border rounded-lg px-4 py-3 text-foreground bg-input placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
             />
-          </label>
+          </div>
         )}
 
-        <label>
-          Email
+        <div className="space-y-2">
+          <label className="block text-sm font-semibold text-foreground">Email</label>
           <input
             type="email"
             required
             value={form.email}
             onChange={(event) => setForm((prev) => ({ ...prev, email: event.target.value }))}
             placeholder="you@domain.com"
+            className="w-full border border-border rounded-lg px-4 py-3 text-foreground bg-input placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
           />
-        </label>
+        </div>
 
-        <label>
-          Password
+        <div className="space-y-2">
+          <label className="block text-sm font-semibold text-foreground">Password</label>
           <input
             type="password"
             required
@@ -76,18 +80,23 @@ const AuthPage = () => {
             value={form.password}
             onChange={(event) => setForm((prev) => ({ ...prev, password: event.target.value }))}
             placeholder="At least 6 characters"
+            className="w-full border border-border rounded-lg px-4 py-3 text-foreground bg-input placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
           />
-        </label>
+        </div>
 
-        {error && <div className="error-box">{error}</div>}
+        {error && (
+          <div className="error-box border border-destructive/30 bg-destructive/10 text-destructive rounded-lg p-3">
+            {error}
+          </div>
+        )}
 
-        <button type="submit" className="btn solid full" disabled={loading}>
+        <button type="submit" className="w-full btn btn-primary py-3 font-semibold" disabled={loading}>
           {loading ? 'Please wait...' : mode === 'signin' ? 'Sign In' : 'Sign Up'}
         </button>
 
         <button
           type="button"
-          className="btn ghost full"
+          className="w-full btn btn-ghost py-3 font-semibold"
           onClick={() => {
             setError('');
             setMode((prev) => (prev === 'signin' ? 'signup' : 'signin'));
