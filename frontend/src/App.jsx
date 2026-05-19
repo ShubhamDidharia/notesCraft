@@ -13,10 +13,20 @@ const ProfilePage = lazy(() => import('./pages/ProfilePage.jsx'));
 
 // Loading fallback component
 const LoadingFallback = () => (
-  <div className="flex items-center justify-center min-h-screen">
-    <div className="text-center">
-      <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-      <p className="text-muted-foreground">Loading...</p>
+  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh' }}>
+    <div style={{ textAlign: 'center' }}>
+      <div style={{
+        width: '48px',
+        height: '48px',
+        borderWidth: '4px',
+        borderStyle: 'solid',
+        borderColor: '#d14d36',
+        borderTopColor: 'transparent',
+        borderRadius: '50%',
+        animation: 'spin 1s linear infinite',
+        margin: '0 auto 16px',
+      }}></div>
+      <p style={{ color: '#5a584f' }}>Loading...</p>
     </div>
   </div>
 );

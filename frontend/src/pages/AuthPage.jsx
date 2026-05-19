@@ -39,40 +39,38 @@ const AuthPage = () => {
   };
 
   return (
-    <section className="page-fade grid place-items-center min-h-screen">
-      <form className="glass w-full max-w-lg p-8 rounded-3xl space-y-6" onSubmit={submit}>
-        <div className="space-y-2">
-          <h2 className="text-3xl font-bold">{mode === 'signin' ? 'Welcome back' : 'Create account'}</h2>
-          <p className="text-muted-foreground">Continue to your intelligent notes workspace.</p>
+    <section className="page-fade" style={{ display: 'grid', placeItems: 'center', minHeight: '100vh' }}>
+      <form className="glass" style={{ width: '100%', maxWidth: '28rem', padding: '2rem', borderRadius: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }} onSubmit={submit}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <h2 style={{ fontSize: '1.875rem', fontWeight: 'bold' }}>{mode === 'signin' ? 'Welcome back' : 'Create account'}</h2>
+          <p style={{ color: '#5a584f' }}>Continue to your intelligent notes workspace.</p>
         </div>
 
         {mode === 'signup' && (
-          <div className="space-y-2">
-            <label className="block text-sm font-semibold text-foreground">Name</label>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <label style={{ fontSize: '0.875rem', fontWeight: '600', color: '#1f1f1b', display: 'block' }}>Name</label>
             <input
               required
               value={form.name}
               onChange={(event) => setForm((prev) => ({ ...prev, name: event.target.value }))}
               placeholder="Ada Lovelace"
-              className="w-full border border-border rounded-lg px-4 py-3 text-foreground bg-input placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
             />
           </div>
         )}
 
-        <div className="space-y-2">
-          <label className="block text-sm font-semibold text-foreground">Email</label>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <label style={{ fontSize: '0.875rem', fontWeight: '600', color: '#1f1f1b', display: 'block' }}>Email</label>
           <input
             type="email"
             required
             value={form.email}
             onChange={(event) => setForm((prev) => ({ ...prev, email: event.target.value }))}
             placeholder="you@domain.com"
-            className="w-full border border-border rounded-lg px-4 py-3 text-foreground bg-input placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
           />
         </div>
 
-        <div className="space-y-2">
-          <label className="block text-sm font-semibold text-foreground">Password</label>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <label style={{ fontSize: '0.875rem', fontWeight: '600', color: '#1f1f1b', display: 'block' }}>Password</label>
           <input
             type="password"
             required
@@ -80,23 +78,23 @@ const AuthPage = () => {
             value={form.password}
             onChange={(event) => setForm((prev) => ({ ...prev, password: event.target.value }))}
             placeholder="At least 6 characters"
-            className="w-full border border-border rounded-lg px-4 py-3 text-foreground bg-input placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
           />
         </div>
 
         {error && (
-          <div className="error-box border border-destructive/30 bg-destructive/10 text-destructive rounded-lg p-3">
+          <div className="error-box" style={{ padding: '0.75rem 1rem' }}>
             {error}
           </div>
         )}
 
-        <button type="submit" className="w-full btn btn-primary py-3 font-semibold" disabled={loading}>
+        <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '0.75rem', fontWeight: '600' }} disabled={loading}>
           {loading ? 'Please wait...' : mode === 'signin' ? 'Sign In' : 'Sign Up'}
         </button>
 
         <button
           type="button"
-          className="w-full btn btn-ghost py-3 font-semibold"
+          className="btn btn-ghost"
+          style={{ width: '100%', padding: '0.75rem', fontWeight: '600' }}
           onClick={() => {
             setError('');
             setMode((prev) => (prev === 'signin' ? 'signup' : 'signin'));

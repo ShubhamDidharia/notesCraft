@@ -18,10 +18,12 @@ export default defineConfig({
   },
   server: {
     port: 5173,
+    middlewareMode: false,
     hmr: {
       protocol: 'ws',
       host: 'localhost',
       port: 5173,
+      overlay: false,
     },
     proxy: {
       '/api': {

@@ -8,13 +8,13 @@ const NoteCard = ({ note, onEdit, onDelete }) => {
     });
 
   return (
-    <article className="note-card glass rounded-2xl p-4 border border-border bg-white/78 hover:shadow-md hover:border-primary/30 transition-all space-y-3">
-      <div className="flex items-start justify-between gap-2">
-        <h3 className="text-lg font-bold text-foreground line-clamp-2">{note.title}</h3>
-        <div className="flex gap-2 flex-shrink-0">
+    <article className="note-card glass" style={{ padding: '1rem', borderRadius: '1rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '0.5rem' }}>
+        <h3 style={{ fontSize: '1.125rem', fontWeight: 'bold', color: '#1f1f1b', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{note.title}</h3>
+        <div style={{ display: 'flex', gap: '0.5rem', flexShrink: 0 }}>
           <button 
             type="button" 
-            className="btn-icon hover:bg-primary/10 hover:text-primary transition-colors"
+            className="btn-icon"
             onClick={() => onEdit(note)}
             title="Edit note"
           >
@@ -22,7 +22,8 @@ const NoteCard = ({ note, onEdit, onDelete }) => {
           </button>
           <button 
             type="button" 
-            className="btn-icon hover:bg-destructive/10 hover:text-destructive transition-colors"
+            className="btn-icon"
+            style={{ color: '#b72222' }}
             onClick={() => onDelete(note._id)}
             title="Delete note"
           >
@@ -30,19 +31,19 @@ const NoteCard = ({ note, onEdit, onDelete }) => {
           </button>
         </div>
       </div>
-      <p className="text-muted-foreground text-sm line-clamp-3 leading-relaxed">{note.content}</p>
-      <div className="flex flex-wrap gap-2">
+      <p style={{ color: '#5a584f', fontSize: '0.875rem', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', lineHeight: '1.6' }}>{note.content}</p>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
         {note.tags?.length ? (
           note.tags.map((tag) => (
-            <span key={tag} className="note-tag text-xs bg-primary/10 text-primary rounded-full px-2 py-1">
+            <span key={tag} style={{ fontSize: '0.75rem', backgroundColor: 'rgba(209, 77, 54, 0.1)', color: '#a53623', borderRadius: '9999px', padding: '0.25rem 0.5rem' }}>
               #{tag}
             </span>
           ))
         ) : (
-          <span className="note-tag text-xs bg-muted text-muted-foreground rounded-full px-2 py-1">#general</span>
+          <span style={{ fontSize: '0.75rem', backgroundColor: '#e6e1d4', color: '#5a584f', borderRadius: '9999px', padding: '0.25rem 0.5rem' }}>#general</span>
         )}
       </div>
-      <p className="text-xs text-muted-foreground pt-2 border-t border-border/50">
+      <p style={{ fontSize: '0.75rem', color: '#5a584f', paddingTop: '0.5rem', borderTop: '1px solid #e6e1d4', borderTopOpacity: 0.5 }}>
         Updated: {formatDate(note.updatedAt)}
       </p>
     </article>

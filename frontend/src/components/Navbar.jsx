@@ -13,7 +13,7 @@ const Navbar = () => {
 
   return (
     <header className="top-nav glass">
-      <Link to="/" className="brand flex items-center gap-2 font-bold text-lg hover:opacity-80 transition-opacity">
+      <Link to="/" className="brand" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem' }}>
         <span>📝</span> NoteCraft
       </Link>
       <nav className="nav-links">
@@ -21,17 +21,14 @@ const Navbar = () => {
           <>
             <NavLink 
               to="/" 
-              className={({ isActive }) => `nav-link px-3 py-2 rounded-full text-sm transition-all ${
-                isActive ? 'border border-border bg-white/40' : ''
-              }`}
+              className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
             >
               Home
             </NavLink>
             <NavLink 
               to="/auth" 
-              className={({ isActive }) => `nav-link btn-primary px-4 py-2 rounded-lg text-sm font-semibold text-white ${
-                isActive ? 'opacity-90' : ''
-              }`}
+              className={({ isActive }) => `nav-link btn-primary ${isActive ? 'active' : ''}`}
+              style={{ backgroundColor: '#d14d36', color: '#ffffff' }}
             >
               Sign In
             </NavLink>
@@ -40,24 +37,21 @@ const Navbar = () => {
           <>
             <NavLink 
               to="/notes" 
-              className={({ isActive }) => `nav-link px-3 py-2 rounded-full text-sm transition-all ${
-                isActive ? 'border border-border bg-white/40' : ''
-              }`}
+              className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
             >
               Notes
             </NavLink>
             <NavLink 
               to="/profile" 
-              className={({ isActive }) => `nav-link px-3 py-2 rounded-full text-sm transition-all ${
-                isActive ? 'border border-border bg-white/40' : ''
-              }`}
+              className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
             >
               Profile
             </NavLink>
             <button 
               type="button" 
               onClick={handleLogout} 
-              className="nav-link px-3 py-2 rounded-full text-sm hover:border hover:border-border hover:bg-white/40 transition-all hover:text-red-600"
+              className="nav-link"
+              style={{ color: '#1f1f1b' }}
             >
               Logout ({user?.name?.split(' ')[0] || 'User'})
             </button>
